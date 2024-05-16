@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
-import java.util.Map;
-import java.util.Objects;
 
 @SpringBootApplication
 @RestController
@@ -38,7 +36,7 @@ public class MiniProxyApplication {
             HttpHeaders headers = new HttpHeaders();
             headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
             headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
-
+            headers.add(HttpHeaders.AUTHORIZATION,"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Im1haG1vdWRhdGVmLmNvZGVyQGdtYWlsLmNvbSIsIm5iZiI6MTcxNTg3NTgwMiwiZXhwIjoxNzQ3NDExODAyLCJpYXQiOjE3MTU4NzU4MDIsImlzcyI6ImRvdG5ldC11c2VyLWp3dHMiLCJhdWQiOiJkYXRhLXBvcnRhbC1hcGkifQ.lHFklmDg4UlPYLi2q2_KED0ifxlUtfWkj8uNloIYrdE");
             HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
             ResponseEntity<?> result =
                     restTemplate.exchange(url, HttpMethod.GET, entity, Object.class);
